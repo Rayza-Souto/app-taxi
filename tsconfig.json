@@ -12,7 +12,7 @@
       "forceConsistentCasingInFileNames": true, // Garante consistência no uso de maiúsculas/minúsculas.
       "resolveJsonModule": true,            // Permite importar arquivos JSON.
       "moduleResolution": "node",          // Resolve módulos como o Node.js faria.
-      "jsx": "react",                      // Necessário para o React no frontend.
+      "jsx": "react-jsx",                      // Necessário para o React no frontend.
       "baseUrl": ".",                      // Base para resolver caminhos relativos.
       "paths": {                           // Configuração de aliases (opcional).
         "@backend/*": ["src/backend/*"],

@@ -5,7 +5,7 @@ import { motoristas } from '../models/motoristas';
 //rota POST /ride/estimate
 import { Request, Response } from "express";
 
-exports.estimateRide = async (req: Request, res: Response) => {
+export const estimateRide = async (req: Request, res: Response) => {
   const { customer_id, origin, destination } = req.body; // Recebe os dados da requisição
 
   if (!customer_id || !origin || !destination) {
@@ -58,7 +58,7 @@ exports.estimateRide = async (req: Request, res: Response) => {
 
 const db = require("../database/connection");
 
-exports.confirmRide = async (req: Request, res: Response) => {
+export const confirmRide = async (req: Request, res: Response) => {
   const { customer_id, origin, destination, driver, distance, value } = req.body;
 
   if (!customer_id || !origin || !destination || !driver || origin === destination) {
@@ -80,3 +80,5 @@ exports.confirmRide = async (req: Request, res: Response) => {
     return res.status(500).json({ error: "Erro ao confirmar viagem." });
   }
 };
+
+export default { estimateRide, confirmRide };
