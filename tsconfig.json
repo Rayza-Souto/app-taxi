@@ -1,7 +1,9 @@
 {
     "compilerOptions": {
-      "target": "ES6",                       // JavaScript moderno como saída.
-      "module": "CommonJS",                 // Sistema de módulo para backend (Node.js usa CommonJS).
+      "allowImportingTsExtensions": true,   // Permite importar arquivos TypeScript.
+      "noEmit": true,                      // Não emite arquivos de saída.
+      "target": "es2017",                       // JavaScript moderno como saída.
+      "module": "commonjs",                 // Sistema de módulo para backend (Node.js usa CommonJS).
       "rootDir": "src",                     // Diretório base para os arquivos TypeScript.
       "outDir": "dist",                     // Diretório de saída para o código compilado.
       "strict": true,                       // Ativa verificações rigorosas de tipo.
