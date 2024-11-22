@@ -1,21 +1,29 @@
 {
   "name": "app-taxi",
   "version": "1.0.0",
-  "description": "Antes de começar, verifique se você atendeu aos seguintes requisitos:",
+  "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "ts-node-dev src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Rayza Souto",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.7.7",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
+    "@types/node": "^22.9.1",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^5.6.3"
-  }
+  },
+  "keywords": []
 }
