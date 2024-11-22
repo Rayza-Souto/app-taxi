@@ -1,0 +1,31 @@
+{
+    "compilerOptions": {
+      "target": "ES6",                       // JavaScript moderno como saída.
+      "module": "CommonJS",                 // Sistema de módulo para backend (Node.js usa CommonJS).
+      "rootDir": "src",                     // Diretório base para os arquivos TypeScript.
+      "outDir": "dist",                     // Diretório de saída para o código compilado.
+      "strict": true,                       // Ativa verificações rigorosas de tipo.
+      "esModuleInterop": true,              // Compatibilidade com import/export padrão.
+      "skipLibCheck": true,                 // Ignora verificações de tipos nas dependências.
+      "forceConsistentCasingInFileNames": true, // Garante consistência no uso de maiúsculas/minúsculas.
+      "resolveJsonModule": true,            // Permite importar arquivos JSON.
+      "moduleResolution": "node",          // Resolve módulos como o Node.js faria.
+      "jsx": "react",                      // Necessário para o React no frontend.
+      "baseUrl": ".",                      // Base para resolver caminhos relativos.
+      "paths": {                           // Configuração de aliases (opcional).
+        "@backend/*": ["src/backend/*"],
+        "@frontend/*": ["src/frontend/*"]
+      }
+    },
+    "include": [
+      "src/**/*.ts",                       // Inclui todos os arquivos TypeScript.
+      "src/**/*.tsx"                       // Inclui todos os arquivos TypeScript + React.
+    ],
+    "exclude": [
+      "node_modules",                      // Exclui dependências.
+      "dist",                              // Exclui diretório de saída.
+      "**/*.test.ts",                      // Exclui arquivos de teste (opcional).
+      "**/*.spec.ts"
+    ]
+  }
+  

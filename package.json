@@ -1,0 +1,20 @@
+{
+  "name": "app-taxi",
+  "version": "1.0.0",
+  "description": "Antes de começar, verifique se você atendeu aos seguintes requisitos:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rayza Souto",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.7",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  }
+}
