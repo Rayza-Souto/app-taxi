@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import App from './frontend/pages/Inicial';
+import  EstimateRideComponent  from './frontend/pages/rideEstimate';
 
 
 const app = express();
@@ -10,7 +10,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.get('/ride/estimate', (req: Request, res: Response) => {
-    res.send(<App />);
+    res.send(<EstimateRideComponent />);
 });
 
 app.get('/ride/confirm', (req: Request, res: Response) => {

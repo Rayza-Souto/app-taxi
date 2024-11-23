@@ -1,9 +1,8 @@
 import axios from "axios";
 import { motoristas } from '../models/motoristas';
-///import drivers from "./models/motoristas.ts";
+import { Request, Response } from "express";
 
 //rota POST /ride/estimate
-import { Request, Response } from "express";
 
 export const estimateRide = async (req: Request, res: Response) => {
   const { customer_id, origin, destination } = req.body; // Recebe os dados da requisição
@@ -35,11 +34,9 @@ export const estimateRide = async (req: Request, res: Response) => {
       });
     }
 
-    const googleApiUrl = `https://maps.googleapis.com/maps/api/directions/json?origin=${encodeURIComponent(
-      origin
-    )}&destination=${encodeURIComponent(destination)}&key=${googleApiKey}`;
+    const googleApiUrl = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&key=${googleApiKey}`;
 
-    const response = await axios.get(googleApiUrl);
+    const response = await axios.get(googleApiUrl); //faz a chamada da API do Google
 
     // Verificando se a API retornou resultados válidos:
     if (!response.data || response.data.status !== "OK") {
