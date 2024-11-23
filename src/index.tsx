@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-
+import App from './frontend/pages/Inicial';
 
 
 const app = express();
@@ -10,11 +10,11 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.get('/ride/estimate', (req: Request, res: Response) => {
-    res.send('Estimativa de corrida');
+    res.send(<App />);
 });
 
 app.get('/ride/confirm', (req: Request, res: Response) => {
-    res.send('Confirmação de corrida');
+    res.send('Página de confirmação de corrida');
 });
 
 app.listen(port, () => {

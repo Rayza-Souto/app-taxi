@@ -22,7 +22,7 @@
     "include": [
       "src/**/*.ts",                       // Inclui todos os arquivos TypeScript.
       "src/**/*.tsx"                       // Inclui todos os arquivos TypeScript + React.
-, "src/index.ts"    ],
+, "src/index.tsx"    ],
     "exclude": [
       "node_modules",                      // Exclui dependências.
       "dist",                              // Exclui diretório de saída.
