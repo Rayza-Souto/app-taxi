@@ -2,7 +2,7 @@
     "compilerOptions": {
       "allowImportingTsExtensions": true,   // Permite importar arquivos TypeScript.
       "noEmit": true,                      // Não emite arquivos de saída.
-      "target": "es2017",                       // JavaScript moderno como saída.
+      "target": "es2019",                       // JavaScript moderno como saída.
       "module": "commonjs",                 // Sistema de módulo para backend (Node.js usa CommonJS).
       "rootDir": "src",                     // Diretório base para os arquivos TypeScript.
       "outDir": "dist",                     // Diretório de saída para o código compilado.
@@ -22,7 +22,7 @@
     "include": [
       "src/**/*.ts",                       // Inclui todos os arquivos TypeScript.
       "src/**/*.tsx"                       // Inclui todos os arquivos TypeScript + React.
-, "src/index.tsx"    ],
+, "src/index.tsx", "src/index.ts"    ],
     "exclude": [
       "node_modules",                      // Exclui dependências.
       "dist",                              // Exclui diretório de saída.
