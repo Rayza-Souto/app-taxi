@@ -2,6 +2,7 @@ import axios from "axios";
 import { Request, Response } from "express";
 import express from "express";
 import dotenv from "dotenv";
+import App from "./frontend/tela inicial";
 
 dotenv.config(); // Carrega as variáveis de ambiente
 const app = express();
@@ -42,6 +43,10 @@ app.get("/ride/estimate", async (req: Request, res: Response): Promise<void> => 
       res.status(500).json({ message: "Internal server error" });
     }
   }
+});
+
+app.get("/", (req: Request, res: Response) => {
+  res.send(App);
 });
 
 app.get("/ride/estimate", (req: Request, res: Response) => {

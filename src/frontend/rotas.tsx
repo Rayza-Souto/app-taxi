@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const RideEstimate = () => {
+function RideEstimate () {
+  //definindo os estados iniciais dos campos
   const [origin, setOrigin] = useState("");
   const [destination, setDestination] = useState("");
   const [routes, setRoutes] = useState<any[]>([]);
   const [error, setError] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent) => { // Função para lidar com o envio do formulário
-    e.preventDefault();
+  const handleSubmit = async (e: React.FormEvent) => { // Função que será chamada quando o formulário for submetido
+    e.preventDefault(); 
 
     try {
-      const response = await axios.get("http://localhost:8080/ride/estimate", { // Faz uma requisição GET para a rota /ride/estimate
+      const response = await axios.get("http://localhost:8080/ride/estimate", {
         params: {
           origin,
           destination,
