@@ -1,21 +1,19 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import SolicitacaoViagens from "./solicitacaoViagem";
+import OpcoesViagem from "./opcoesViagem";
+import HistoricoViagens from "./historicoViagens";
 
-function RideEstimate () {
-  //definindo os estados iniciais dos campos
-  const [origin, setOrigin] = useState("");
-  const [destination, setDestination] = useState("");
-  const [routes, setRoutes] = useState<any[]>([]);
-  const [error, setError] = useState("");
-
-
-
-
+const App: React.FC = () => {
   return (
-    <div>
-    <h1>Oi</h1>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<SolicitacaoViagens />} />
+        <Route path="/ride/estimate" element={<OpcoesViagem />} />
+        <Route path= {"/ride/:customer_id"} element={<HistoricoViagens />} />
+      </Routes>
+    </Router>
   );
 };
 
-export default RideEstimate;
+export default App;

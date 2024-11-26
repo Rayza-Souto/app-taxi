@@ -6,13 +6,13 @@ const api = axios.create({
   baseURL: "http://localhost:8080", // URL da API
 });
 
-const RequestRide: React.FC = () => {
+const SolicitacaoViagens: React.FC = () => {
   const [customerId, setCustomerId] = useState("");
   const [origin, setOrigin] = useState("");
   const [destination, setDestination] = useState("");
   const [error, setError] = useState<string | null>(null);
 
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Navegação entre páginas
 
   const handleEstimate = async () => {
     try {
@@ -60,4 +60,4 @@ const RequestRide: React.FC = () => {
   );
 };
 
-export default RequestRide;
+export default SolicitacaoViagens;

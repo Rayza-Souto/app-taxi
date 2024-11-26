@@ -2,7 +2,6 @@ import axios from "axios";
 import { Request, Response } from "express";
 import express from "express";
 import dotenv from "dotenv";
-import App from "./frontend/tela inicial";
 
 dotenv.config();
 const app = express();
@@ -60,9 +59,7 @@ app.get("/ride/estimate", async (req: Request, res: Response) => {
   }
 });
 
-app.get("/", (req: Request, res: Response) => {
-  res.send(<App />); ;
-});
+
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
