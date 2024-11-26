@@ -9,26 +9,55 @@ export const initDb = async () => {
 
   // Criação da tabela de motoristas
   await db.exec(`
-    CREATE TABLE IF NOT EXISTS drivers (
+    CREATE TABLE drivers (
       id INTEGER PRIMARY KEY,
       name TEXT,
       description TEXT,
       vehicle TEXT,
-      rating INTEGER,
-      comment TEXT,
-      rate_per_km REAL,
-      min_km REAL
+      review_rating INTEGER,
+      review_comment TEXT,
+      rate REAL,
+      minDistance REAL
     );
   `);
 
   // Inserir motoristas padrão (se não existirem)
   await db.exec(`
-    INSERT OR IGNORE INTO drivers (id, name, description, vehicle, rating, comment, rate_per_km, min_km)
+    INSERT drivers (id, name, description, vehicle, rating, comment, rate_per_km, min_km)
     VALUES
-      (1, 'Homer Simpson', '...', 'Plymouth Valiant', 2, '...', 2.5, 1),
-      (2, 'Dominic Toretto', '...', 'Dodge Charger', 4, '...', 5.0, 5),
-      (3, 'James Bond', '...', 'Aston Martin DB5', 5, '...', 10.0, 10);
+      (1, 'Homer Simpson', 'Olá! Sou o Homer, seu motorista camarada!', 'Plymouth Valiant', 2, 'Motorista simpático, mas errou o caminho 3 vezes.', 2.5, 1),
+      (2, 'Dominic Toretto', 'Ei, aqui é o Dom. Pode entrar, vou te levar com segurança e rapidez.', 'Dodge Charger', 4, 'Que viagem incrível! O carro é um show à parte.', 5.0, 5),
+      (3, 'James Bond', 'Boa noite, sou James Bond. À seu dispor para um passeio suave e discreto.', 'Aston Martin DB5', 5, 'Serviço impecável! O motorista é a própria definição de classe', 10.0, 10);
   `);
 
-  return db;
+  // Criação da tabela de viagens
+  await db.exec(`
+    CREATE TABLE rides (
+      id INTEGER PRIMARY KEY,
+      customer_id INTEGER,
+      driver_id INTEGER,
+      date TEXT,
+      distance REAL,
+      duration INTEGER,
+      cost REAL,
+      rating INTEGER,
+      comment TEXT
+    );
+  `);
+
+  // Inserir viagens padrão (se não existirem)
+  await db.exec(`
+    INSERT rides (id, customer_id, driver_id, date, distance, duration, cost, rating, comment)
+    VALUES
+
+  `);
 };
+
+(async () => {
+  try {
+    const db = await initDb();
+    console.log("Banco de dados inicializado com sucesso!");
+  } catch (error) {
+    console.error("Erro ao inicializar o banco de dados:", error);
+  }
+})();

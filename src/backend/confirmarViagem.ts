@@ -36,6 +36,7 @@ export const estimateRide = async (req: Request, res: Response) => {
     }));
 
     // Responder ao cliente
+    console.log("corrida:")
     res.status(200).render('corrida',{
       customer_id,
       origin ,
