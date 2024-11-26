@@ -1,39 +1,43 @@
 import { Request, Response } from "express";
-import { drivers } from "../data/drivers";
-import { saveRide } from "../models/rideModel";
+import { motoristas } from "./models/motoristas";
+import { salvarCorrida } from "./modeloViagem";
 
-export const confirmRide = (req: Request, res: Response) => {
-  const { customer_id, origin, destination, distance, duration, driver, value } = req.body;
+export const confirmRide = async (req: Request, res: Response): Promise<void> => {
+  const { customer_id, origin, destination, distance, duration, driver, value } = req.body; //recebe os dados da requisição
 
   // Validações
-  if (!customer_id || !origin || !destination || !driver || !value) {
-    return res.status(400).json({
+  if (!customer_id || !origin || !destination || !driver || !value) { //se algum campo estiver vazio
+     res.status(400).json({
       error_code: "INVALID_DATA",
       error_description: "Todos os campos são obrigatórios",
     });
+    return;
   }
-  if (origin === destination) {
-    return res.status(400).json({
+  if (origin === destination) { //se a origem for igual ao destino
+     res.status(400).json({
       error_code: "INVALID_DATA",
       error_description: "Origem e destino não podem ser iguais",
     });
+    return;
   }
-  const selectedDriver = drivers.find((d) => d.id === driver.id);
-  if (!selectedDriver) {
-    return res.status(404).json({
+  const selectedDriver = motoristas.find((d) => d.id === driver.id);
+  if (!selectedDriver) { //se o motorista não for encontrado
+     res.status(404).json({
       error_code: "DRIVER_NOT_FOUND",
       error_description: "Motorista não encontrado",
     });
+    return;
   }
-  if (distance < selectedDriver.minKm) {
-    return res.status(406).json({
+  if (distance < selectedDriver.minDistance) { //se a distância for menor que a distância mínima do motorista
+     res.status(406).json({
       error_code: "INVALID_DISTANCE",
-      error_description: "Distância inválida para o motorista",
+      error_description: "Quilometragem inválida para o motorista",
     });
+    return;
   }
 
   // Salvar viagem
-  saveRide({
+  salvarCorrida({
     customer_id,
     origin,
     destination,
@@ -44,5 +48,7 @@ export const confirmRide = (req: Request, res: Response) => {
     date: new Date(),
   });
 
-  res.status(200).json({ success: true });
+  res.status(200).json({ success: true }); 
 };
+
+export default confirmRide;

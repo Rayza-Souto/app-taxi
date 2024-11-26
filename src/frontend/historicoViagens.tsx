@@ -1,9 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
-
-const api = axios.create({
-  baseURL: "http://localhost:8080", // URL da API
-});
+import api from "./services/api";
 
 const HistoricoViagens: React.FC = () => {
     const [customerId, setCustomerId] = useState("");

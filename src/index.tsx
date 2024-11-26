@@ -59,6 +59,47 @@ app.get("/ride/estimate", async (req: Request, res: Response) => {
   }
 });
 
+app.get("/ride/confirm", async (req: Request, res: Response) => {
+  console.log("Received query parameters:", req.query);
+  const { customer_id, origin, destination, distance, duration, driver, value } = req.query;
+
+  if (typeof customer_id !== "string" || typeof origin !== "string" || typeof destination !== "string" || typeof distance !== "string" || typeof duration !== "string" || typeof driver !== "string" || typeof value !== "string") {
+    res.status(400).json({ message: "Parâmetros inválidos" });
+    return;
+  }
+
+  if (!customer_id || !origin || !destination || !distance || !duration || !driver || !value) {
+    res.status(400).json({ message: "Todos os campos são obrigatórios" });
+    return;
+  }
+
+  try {
+    const response = await api.post("/confirm", {
+      customer_id,
+      origin,
+      destination,
+      distance,
+      duration,
+      driver,
+      value,
+    });
+
+    res.status(200).json(response.data);
+  } catch (error: any) {
+    console.error(error);
+
+    if (axios.isAxiosError(error)) {
+      res.status(500).json({
+        message: "API Error",
+        details: error.response?.data || "No details available",
+      });
+    } else {
+      res.status(500).json({ message: "Internal server error" });
+    }
+  }
+});
+
+
 
 
 app.listen(port, () => {

@@ -20,3 +20,5 @@ export const calculateRoute = async (origin: string, destination: string) => {
 
   return { distance, duration, fullResponse: data };
 };
+
+export default calculateRoute;

@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "./services/api";
 
-const api = axios.create({
-  baseURL: "http://localhost:8080", // URL da API
-});
-
-const OpcoesViagem: React.FC = () => {
+const OpcoesViagem: React.FC = () => { //react.fc faz com que o componente seja uma função
   const [estimate, setEstimate] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -35,7 +31,7 @@ const OpcoesViagem: React.FC = () => {
         value: driver.value,
       });
       if (response.data.success) {
-        navigate("/history");
+        navigate("/ride/" + estimate.customer_id);
       }
     } catch (err: any) {
       setError(err.response?.data?.error_description || "Erro ao confirmar a viagem.");

@@ -1,12 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "./services/api";
 
-const api = axios.create({
-  baseURL: "http://localhost:8080", // URL da API
-});
-
-const SolicitacaoViagens: React.FC = () => {
+export const SolicitacaoViagens: React.FC = () => {
   const [customerId, setCustomerId] = useState("");
   const [origin, setOrigin] = useState("");
   const [destination, setDestination] = useState("");
@@ -14,22 +10,23 @@ const SolicitacaoViagens: React.FC = () => {
 
   const navigate = useNavigate(); // Navegação entre páginas
 
-  const handleEstimate = async () => {
-    try {
+  const handleEstimate = async () => { // Função para estimar a viagem
+    try { //tratativa de erro
       if (!customerId || !origin || !destination) {
         setError("Todos os campos são obrigatórios!");
         return;
       }
 
-      const response = await api.post("/ride/estimate", {
+      const response = await api.post("/ride/estimate", { //faz a requisição para a API
         customer_id: customerId,
         origin,
         destination,
       });
 
       // Armazenar dados no localStorage para a próxima página
+      
       localStorage.setItem("estimate", JSON.stringify(response.data));
-      navigate("/options");
+      navigate("/ride/estimate"); // Redireciona para a página de opções
     } catch (err: any) {
       setError(err.response?.data?.error_description || "Erro ao estimar a viagem.");
     }
