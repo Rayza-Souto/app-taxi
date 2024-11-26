@@ -1,72 +1,53 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import api from "./services/api";
+import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import app from './services/api';
 
-const OpcoesViagem: React.FC = () => { //react.fc faz com que o componente seja uma função
-  const [estimate, setEstimate] = useState<any>(null);
-  const [error, setError] = useState<string | null>(null);
+const RideOptions: React.FC = () => {
+  const location = useLocation();
   const navigate = useNavigate();
+  const data = location.state?.data;
 
-  useEffect(() => {
-    const data = localStorage.getItem("estimate");
-    if (data) {
-      setEstimate(JSON.parse(data));
-    } else {
-      navigate("/");
-    }
-  }, [navigate]);
+  if (!data) {
+    return <p>Nenhuma informação disponível. Por favor, retorne à tela inicial.</p>;
+  }
 
-  const handleChooseDriver = async (driver: any) => {
+  const handleChooseDriver = async (driver: any) => {//função para escolher o motorista
     try {
-      const response = await api.patch("/ride/confirm", {
-        customer_id: estimate.customer_id,
-        origin: estimate.origin,
-        destination: estimate.destination,
-        distance: estimate.distance,
-        duration: estimate.duration,
-        driver: {
-          id: driver.id,
-          name: driver.name,
-        },
+      await app.patch('/ride/confirm', {
+        customer_id: data.customer_id,
+        origin: data.origin,
+        destination: data.destination,
+        distance: data.distance,
+        duration: data.duration,
+        driver: { id: driver.id, name: driver.name },
         value: driver.value,
       });
-      if (response.data.success) {
-        navigate("/ride/" + estimate.customer_id);
-      }
-    } catch (err: any) {
-      setError(err.response?.data?.error_description || "Erro ao confirmar a viagem.");
+    } catch (error: any) {
+      alert(error.response?.data?.error_description || 'Erro ao confirmar a viagem.');
     }
   };
 
   return (
     <div>
       <h1>Opções de Viagem</h1>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      {estimate && (
-        <>
-          <h2>Rota</h2>
-          <p>
-            Origem: {estimate.origin.latitude}, {estimate.origin.longitude} <br />
-            Destino: {estimate.destination.latitude}, {estimate.destination.longitude}
-          </p>
-          <p>Distância: {estimate.distance} km</p>
-          <p>Duração: {estimate.duration}</p>
-
-          <h2>Motoristas Disponíveis</h2>
-          <ul>
-            {estimate.options.map((driver: any) => (
-              <li key={driver.id}>
-                <p>{driver.name} - {driver.vehicle} ({driver.review.rating}/5)</p>
-                <p>{driver.description}</p>
-                <p>R$ {driver.value.toFixed(2)}</p>
-                <button onClick={() => handleChooseDriver(driver)}>Escolher</button>
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
+      <p>Origem: {data.origin.latitude}, {data.origin.longitude}</p>
+      <p>Destino: {data.destination.latitude}, {data.destination.longitude}</p>
+      <p>Distância: {data.distance} km</p>
+      <p>Duração: {data.duration}</p>
+      <h2>Motoristas Disponíveis</h2>
+      <ul>
+        {data.options.map((option: any) => (
+          <li key={option.id}>
+            <strong>{option.name}</strong> - {option.vehicle}
+            <br />
+            <em>{option.description}</em>
+            <br />
+            Valor: R${option.value}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
 
-export default OpcoesViagem;
+export default RideOptions;
