@@ -11,6 +11,15 @@ const port = 8080;
 
 app.use(express.json());
 
+// Servir arquivos estáticos com o tipo MIME correto
+app.use(express.static(path.join(__dirname, 'build'), {
+  setHeaders: (res, path) => {
+    if (path.endsWith('.js')) {
+      res.set('Content-Type', 'application/javascript'); // Corrige o tipo MIME
+    }
+  }
+}));
+
 const api = axios.create({
   baseURL: `https://maps.googleapis.com/maps/api/directions/json`
 });

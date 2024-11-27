@@ -26,6 +26,9 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   devServer: {
+    headers: {
+      'Content-Type': 'application/javascript', // Defina o tipo MIME correto
+    },
     static: './dist',                     // Pasta para servir os arquivos estáticos
     open: true,                           // Abre o navegador automaticamente
     port: 8080,                           // Define a porta do servidor
