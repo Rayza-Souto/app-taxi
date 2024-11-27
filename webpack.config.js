@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/index.tsx',               // Ponto de entrada do seu aplicativo
+  entry: './src/app.tsx',               // Ponto de entrada do seu aplicativo
   output: {
     filename: 'bundle.js',                // Arquivo de saída
     path: path.resolve(__dirname, 'dist'), // Diretório de saída
@@ -20,10 +20,6 @@ module.exports = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
-  },
-  output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
   },
   devServer: {
     headers: {
