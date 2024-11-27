@@ -1,0 +1,22 @@
+# Usar a imagem base do Node
+FROM node:16
+
+# Definir o diretório de trabalho dentro do container
+WORKDIR /app
+
+# Copiar o arquivo package.json e package-lock.json
+COPY .src/backend/package.json .src/backend/package-lock.json ./
+
+# Instalar as dependências
+RUN npm install
+
+# Copiar os arquivos do backend
+COPY ./src/backend ./src  
+
+# Expor a porta 8080 para o backend
+EXPOSE 8080
+
+# Rodar o servidor
+CMD ["npm", "run", "dev"]
+
+

@@ -7,6 +7,7 @@ const RideOptions: React.FC = () => {
   const navigate = useNavigate(); //navega para outra rota
   const data = location.state?.data; //pega os dados da localização atual
 
+
   if (!data) {
     return <p>Nenhuma informação disponível. Por favor, retorne à tela inicial.</p>;
   }

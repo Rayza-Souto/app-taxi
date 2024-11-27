@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,24 +7,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const dotenv_1 = __importDefault(require("dotenv"));
-const path_1 = __importDefault(require("path"));
-const axios_1 = __importDefault(require("axios"));
-const opcoesViagem_1 = __importDefault(require("./frontend/opcoesViagem"));
-dotenv_1.default.config();
-const app = (0, express_1.default)();
+import express from 'express';
+import dotenv from 'dotenv';
+import path from 'path';
+import axios from 'axios';
+import handleChooseDriver from './frontend/opcoesViagem';
+dotenv.config();
+const app = express();
 const port = 8080;
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
-app.use(express_1.default.json());
-app.use(express_1.default.static(path_1.default.join(__dirname, 'index.html')));
-const api = axios_1.default.create({
+app.use(express.json());
+app.use(express.static(path.join(__dirname, 'build')));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+const api = axios.create({
     baseURL: `https://maps.googleapis.com/maps/api/directions/json`
 });
 app.get("/ride/estimate", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -55,7 +53,7 @@ app.get("/ride/estimate", (req, res) => __awaiter(void 0, void 0, void 0, functi
                 destination: leg.end_location.lat,
                 distance: leg.distance.text,
                 duration: leg.duration.text,
-                options: opcoesViagem_1.default,
+                options: handleChooseDriver,
                 value: 0,
             };
             res.status(200).json(filtro);
@@ -66,7 +64,7 @@ app.get("/ride/estimate", (req, res) => __awaiter(void 0, void 0, void 0, functi
     }
     catch (error) {
         console.error(error);
-        if (axios_1.default.isAxiosError(error)) {
+        if (axios.isAxiosError(error)) {
             res.status(500).json({
                 message: "API Error",
                 details: ((_a = error.response) === null || _a === void 0 ? void 0 : _a.data) || "No details available",

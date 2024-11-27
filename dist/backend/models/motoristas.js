@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.motoristas = void 0;
-exports.motoristas = [
+export const motoristas = [
     {
         id: 1,
         name: "Homer Simpson",

@@ -1,12 +1,12 @@
 import React from 'react';
+import { createRoot } from "react-dom/client";
 
-const Inicio: React.FC = () => {
-    return (
-        <div style={{ textAlign: 'center', marginTop: '50px' }}>
-            <h1>Bem-vindo ao App Taxi!</h1>
-            <p>Estamos felizes em tê-lo conosco.</p>
-        </div>
-    );
-};
 
-export default Inicio;
+const App = () => (
+    <div>
+        <h1>Olá, mundo!</h1>
+    </div>
+);
+
+
+export default App;

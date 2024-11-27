@@ -5,7 +5,6 @@ import axios from 'axios';
 import { Request, Response } from 'express';
 import handleChooseDriver from './frontend/opcoesViagem';
 
-
 dotenv.config();
 const app = express();
 const port = 8080;
@@ -15,7 +14,9 @@ app.listen(port, () => {
 })
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'index.html')));
+
+// Serve os arquivos estáticos do frontend (React)
+app.use(express.static(path.join(__dirname, 'build')));
 
 const api = axios.create({
     baseURL: `https://maps.googleapis.com/maps/api/directions/json`
@@ -35,6 +36,11 @@ app.get("/ride/estimate", async (req: Request, res: Response) => {
         return;
     }
 
+    if (origin === destination) {
+        res.status(400).json({ message: "Origem e destino não podem ser iguais" });
+        return;
+    }
+
     try { //vai tentar fazer a requisição
         const response = await api.get("", {
             params: {
@@ -46,6 +52,7 @@ app.get("/ride/estimate", async (req: Request, res: Response) => {
 
 
         if (response.data.routes && response.data.routes.length > 0) { //se a resposta retornar uma rota
+            console.log(response.data.routes[0].legs[0]);
             const leg = response.data.routes[0].legs[0];
             const filtro = {
                 origin: leg.start_location.lat,

@@ -1,0 +1,25 @@
+services:
+  frontend:
+    build:
+      context: ./src/frontend  # Ajuste para o diretório correto dentro de src/frontend
+    ports:
+      - "80:80"
+    volumes:
+      - ./src/frontend:/app  # Ajuste para o diretório correto dentro de src/frontend
+    environment:
+      - NODE_ENV=development
+    command: npm start
+
+  backend:
+    build:
+      context: ./src/backend  # Ajuste para o diretório correto dentro de src/backend
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./src/backend:/app  # Ajuste para o diretório correto dentro de src/backend
+    environment:
+      - NODE_ENV=development
+    command: npm run dev
+
+
+

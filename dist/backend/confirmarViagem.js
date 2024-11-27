@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,15 +7,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.estimateRide = void 0;
-const googleMapsService_1 = require("./googleMapsService");
-const sqlite_1 = require("sqlite");
-const sqlite3_1 = __importDefault(require("sqlite3"));
-const estimateRide = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+import { calculateRoute } from './googleMapsService';
+import { open } from 'sqlite';
+import sqlite3 from 'sqlite3';
+export const estimateRide = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { customer_id, origin, destination } = req.body; // Dados da requisição
     // Validações
     if (!customer_id || !origin || !destination) {
@@ -27,9 +21,9 @@ const estimateRide = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     }
     try {
         // Calcular rota
-        const { distance, duration } = yield (0, googleMapsService_1.calculateRoute)(origin, destination); //pegando os dados da rota para calcular a distancia e duração
+        const { distance, duration } = yield calculateRoute(origin, destination); //pegando os dados da rota para calcular a distancia e duração
         // Obter motoristas do banco
-        const db = yield (0, sqlite_1.open)({ filename: './database.sqlite', driver: sqlite3_1.default.Database });
+        const db = yield open({ filename: './database.sqlite', driver: sqlite3.Database });
         const drivers = yield db.all('SELECT * FROM drivers WHERE min_km <= ?', [distance]);
         // Calcular valores para cada motorista
         const options = drivers.map((driver) => ({
@@ -57,5 +51,4 @@ const estimateRide = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         res.status(500).json({ error_code: 'INTERNAL_ERROR', error_description: 'Algo deu errado' });
     }
 });
-exports.estimateRide = estimateRide;
-exports.default = exports.estimateRide;
+export default estimateRide;
