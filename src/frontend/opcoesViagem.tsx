@@ -22,7 +22,6 @@ const RideOptions: React.FC = () => {
         driver: { id: driver.id, name: driver.name },
         value: driver.value,
       });
-      navigate('/ride/:customer_id', { state:{customer_id: data.customer_id} }); //navega para a rota /ride/:customer_id
     } catch (error: any) {
       alert(error.response?.data?.error_description || 'Erro ao confirmar a viagem.');
     }
@@ -31,9 +30,6 @@ const RideOptions: React.FC = () => {
   return (
     <div>
       <h1>Opções de Viagem</h1>
-      <pre style={{ background: '#f4f4f4', padding: '10px', borderRadius: '5px' }}>
-        {JSON.stringify(data, null, 2)}
-      </pre>
       <p>Origem: {data.origin.latitude}, {data.origin.longitude}</p>
       <p>Destino: {data.destination.latitude}, {data.destination.longitude}</p>
       <p>Distância: {data.distance} km</p>

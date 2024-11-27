@@ -8,11 +8,11 @@ const RideRequestForm: React.FC = () => {
   const [destination, setDestination] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => { //função para enviar a solicitação de viagem
     e.preventDefault();
     try {
-      const response = await app.post('/ride/estimate', { customer_id: customerId, origin, destination }); //envia uma requisição POST para a rota /ride/estimate
-      navigate('/ride/:customer_id', { state:{data: customerId} })
+      const response = await app.post('/ride/estimate', { customer_id: customerId, origin, destination });
+      navigate('/options', { state: { data: response.data } });
     } catch (error: any) {
       alert(error.response?.data?.error_description || 'Erro ao estimar a viagem.');
     }
