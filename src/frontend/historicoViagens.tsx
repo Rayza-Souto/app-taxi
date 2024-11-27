@@ -46,3 +46,4 @@ const RideHistory: React.FC = () => {
 };
 
 export default RideHistory;
+

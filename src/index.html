@@ -5,57 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taxi App</title>
-    <script src="frontend/solicitacaoViagem.tsx"></script>
+    <script src="frontend/inicio.js"></script>
 </head>
 
 <body>
     <div id="root"></div>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <div>
-        <h1>Bem-vindo ao App Taxi!</h1>
-        <p>Estamos felizes em tê-lo conosco.</p>
-    </div>
-        <div class="container">
-          Origem:
-          <input class="form-control" type="text" placeholder="Digite a origem" id="inputOrigem">
-          Destino:
-          <input class="form-control" type="text" placeholder="Digite o destino" id="inputDestino">
-          <br>
-          <div class="row">
-            <div class="col-sm">
-              <button type="button" class="btn btn-primary btn-lg" id="btnSolicitar">Solicite uma corrida</button>
-            </div>
-            <div class="col-sm">
-              <a href=""><button type="button" class="btn btn-primary btn-lg">Corridas anteriores</button></a>
-            </div>
-          </div>
-        </div>
-      
-        <script>
-          // Selecionar o botão e inputs
-          const btnSolicitar = document.getElementById('btnSolicitar');
-          const inputOrigem = document.getElementById('inputOrigem');
-          const inputDestino = document.getElementById('inputDestino');
-      
-          // Adicionar evento ao botão
-          btnSolicitar.addEventListener('click', () => {
-            const origem = encodeURIComponent(inputOrigem.value); // Codifica o valor para URL
-            const destino = encodeURIComponent(inputDestino.value); // Codifica o valor para URL
-      
-            // Verifica se os campos estão preenchidos
-            if (!origem || !destino) {
-              alert('Por favor, preencha ambos os campos.');
-              return;
-            }
-      
-            // Construir a URL com os parâmetros
-            const url = `http://localhost:8080/ride/estimate?origin=${origem}&destination=${destino}`;
-      
-            // Redirecionar para a URL gerada
-            window.location.href = url;
-          });
-        </script>
+    
 </body>
 
 </html>

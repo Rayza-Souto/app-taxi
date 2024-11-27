@@ -10,6 +10,8 @@ export const getRideHistory = async (req: Request, res: Response): Promise<void>
       error_code: "INVALID_DATA",
       error_description: "ID do usuário é obrigatório",
     });
+
+    
   }
 
   const rides = verCorridas(customer_id, driver_id ? Number(driver_id) : undefined);
@@ -23,3 +25,4 @@ export const getRideHistory = async (req: Request, res: Response): Promise<void>
 
   res.status(200).json({ customer_id, rides });
 };
+

@@ -3,7 +3,6 @@ import { Request, Response } from "express";
 import express from "express";
 import dotenv from "dotenv";
 import handleChooseDriver from "./frontend/opcoesViagem";
-import Inicio from "./frontend/inicio";
 import path from "path";  // Importando path para servir arquivos estáticos
 
 dotenv.config();
@@ -18,7 +17,7 @@ const api = axios.create({
 
 app.get("/", (req: Request, res: Response) => {
   // Envia o arquivo index.html do build do React
-  res.sendFile(path.join(__dirname,  "index.html"));
+  res.sendFile(path.join(__dirname,  "..", "src", "index.html"));
 });
 
 app.get("/ride/estimate", async (req: Request, res: Response) => {

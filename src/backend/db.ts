@@ -1,10 +1,11 @@
 import sqlite3 from 'sqlite3';
 import { open } from 'sqlite';
 
-export const initDb = async () => {
+export const initDb = async () => { // Função para inicializar o banco de dados
   const db = await open({
     filename: './database.sqlite',
     driver: sqlite3.Database,
+
   });
 
   // Criação da tabela de motoristas
@@ -21,9 +22,9 @@ export const initDb = async () => {
     );
   `);
 
-  // Inserir motoristas padrão (se não existirem)
+  // Inserir motoristas padrão 
   await db.exec(`
-    INSERT drivers (id, name, description, vehicle, rating, comment, rate_per_km, min_km)
+    INSERT INTO drivers (id, name, description, vehicle, rating, comment, rate_per_km, min_km)
     VALUES
       (1, 'Homer Simpson', 'Olá! Sou o Homer, seu motorista camarada!', 'Plymouth Valiant', 2, 'Motorista simpático, mas errou o caminho 3 vezes.', 2.5, 1),
       (2, 'Dominic Toretto', 'Ei, aqui é o Dom. Pode entrar, vou te levar com segurança e rapidez.', 'Dodge Charger', 4, 'Que viagem incrível! O carro é um show à parte.', 5.0, 5),
@@ -45,19 +46,12 @@ export const initDb = async () => {
     );
   `);
 
-  // Inserir viagens padrão (se não existirem)
+  // Inserir viagens
   await db.exec(`
-    INSERT rides (id, customer_id, driver_id, date, distance, duration, cost, rating, comment)
+    INSERT INTO rides (id, customer_id, driver_id, date, distance, duration, cost, rating, comment)
     VALUES
 
   `);
 };
 
-(async () => {
-  try {
-    const db = await initDb();
-    console.log("Banco de dados inicializado com sucesso!");
-  } catch (error) {
-    console.error("Erro ao inicializar o banco de dados:", error);
-  }
-})();
+export default initDb;

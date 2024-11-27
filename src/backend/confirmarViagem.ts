@@ -36,7 +36,6 @@ export const estimateRide = async (req: Request, res: Response) => {
     }));
 
     // Responder ao cliente
-    console.log("corrida:")
     res.status(200).render('corrida',{
       customer_id,
       origin ,
@@ -49,3 +48,5 @@ export const estimateRide = async (req: Request, res: Response) => {
     res.status(500).json({ error_code: 'INTERNAL_ERROR', error_description: 'Algo deu errado' });
   }
 };
+
+export default estimateRide;

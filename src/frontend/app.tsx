@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import RideRequestForm from './components/RideRequestForm';
-import RideOptions from './components/RideOptions';
-import RideHistory from './components/RideHistory';
+import RideRequestForm from '../frontend/solicitacaoViagem';
+import RideOptions from '../frontend/opcoesViagem';
+import RideHistory from '../frontend/historicoViagens';
 
 const App: React.FC = () => {
   return (
