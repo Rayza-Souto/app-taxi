@@ -9,10 +9,9 @@ const opcoesViagem_1 = __importDefault(require("./frontend/opcoesViagem"));
 const historicoViagens_1 = __importDefault(require("./frontend/historicoViagens"));
 const home_1 = __importDefault(require("./frontend/home"));
 const AppRotas = () => {
-    return (<react_router_dom_1.Routes>
-            <react_router_dom_1.Route path="/" element={<home_1.default />}/>
-            <react_router_dom_1.Route path="/ride/estimate" element={<opcoesViagem_1.default />}/>
-            <react_router_dom_1.Route path="/ride/:customer_id" element={<historicoViagens_1.default />}/>
-        </react_router_dom_1.Routes>);
+    return (react_1.default.createElement(react_router_dom_1.Routes, null,
+        react_1.default.createElement(react_router_dom_1.Route, { path: "/", element: react_1.default.createElement(home_1.default, null) }),
+        react_1.default.createElement(react_router_dom_1.Route, { path: "/ride/estimate", element: react_1.default.createElement(opcoesViagem_1.default, null) }),
+        react_1.default.createElement(react_router_dom_1.Route, { path: "/ride/:customer_id", element: react_1.default.createElement(historicoViagens_1.default, null) })));
 };
 exports.default = AppRotas;

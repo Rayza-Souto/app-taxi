@@ -6,10 +6,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Home = void 0;
 const react_1 = __importDefault(require("react"));
 const Home = () => {
-    return (<div>
-        <h1>Home</h1>
-        <p>Seja bem-vindo ao sistema de viagens!</p>
-        </div>);
+    return (react_1.default.createElement("div", null,
+        react_1.default.createElement("h1", null, "Home"),
+        react_1.default.createElement("p", null, "Seja bem-vindo ao sistema de viagens!")));
 };
 exports.Home = Home;
 exports.default = exports.Home;

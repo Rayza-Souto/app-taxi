@@ -18,8 +18,8 @@ app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
 const App = () => {
-    return (<react_router_dom_1.BrowserRouter>
-            <routes_1.default />  {/* Aqui você chama o componente AppRoutes que contém as rotas */}
-        </react_router_dom_1.BrowserRouter>);
+    return (react_1.default.createElement(react_router_dom_1.BrowserRouter, null,
+        react_1.default.createElement(routes_1.default, null),
+        "  "));
 };
 exports.default = App;

@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
   entry: './src/app.tsx',               // Ponto de entrada do seu aplicativo
   output: {
-    filename: 'bundle.js',                // Arquivo de saída
+    filename: 'app.js',               // Arquivo de saída
     path: path.resolve(__dirname, 'dist'), // Diretório de saída
   },
   resolve: {
@@ -12,8 +12,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,                   // Transforma arquivos .ts ou .tsx
-        use: 'ts-loader',                  // Usando o ts-loader para compilar o TypeScript
+        test: /\.(ts|tsx)$/,                   // Transforma arquivos .ts ou .tsx
+        use: 'babel-loader',                  
         exclude: /node_modules/,
       },
     ],

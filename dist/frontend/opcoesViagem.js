@@ -21,7 +21,7 @@ const RideOptions = () => {
     const navigate = (0, react_router_dom_1.useNavigate)(); //navega para outra rota
     const data = (_a = location.state) === null || _a === void 0 ? void 0 : _a.data; //pega os dados da localização atual
     if (!data) {
-        return <p>Nenhuma informação disponível. Por favor, retorne à tela inicial.</p>;
+        return react_1.default.createElement("p", null, "Nenhuma informa\u00E7\u00E3o dispon\u00EDvel. Por favor, retorne \u00E0 tela inicial.");
     }
     const handleChooseDriver = (driver) => __awaiter(void 0, void 0, void 0, function* () {
         var _a, _b;
@@ -40,24 +40,36 @@ const RideOptions = () => {
             alert(((_b = (_a = error.response) === null || _a === void 0 ? void 0 : _a.data) === null || _b === void 0 ? void 0 : _b.error_description) || 'Erro ao confirmar a viagem.');
         }
     });
-    return (<div>
-      <h1>Opções de Viagem</h1>
-      <p>Origem: {data.origin.latitude}, {data.origin.longitude}</p>
-      <p>Destino: {data.destination.latitude}, {data.destination.longitude}</p>
-      <p>Distância: {data.distance} km</p>
-      <p>Duração: {data.duration}</p>
-      <h2>Motoristas Disponíveis</h2>
-      <ul>
-        {data.options.map((option) => (<li key={option.id}>
-            <strong>{option.name}</strong> - {option.vehicle}
-            <br />
-            <em>{option.description}</em>
-            <br />
-            Valor: R${option.value.toFixed(2)}
-            <br />
-            <button onClick={() => handleChooseDriver(option)}>Escolher</button>
-          </li>))}
-      </ul>
-    </div>);
+    return (react_1.default.createElement("div", null,
+        react_1.default.createElement("h1", null, "Op\u00E7\u00F5es de Viagem"),
+        react_1.default.createElement("p", null,
+            "Origem: ",
+            data.origin.latitude,
+            ", ",
+            data.origin.longitude),
+        react_1.default.createElement("p", null,
+            "Destino: ",
+            data.destination.latitude,
+            ", ",
+            data.destination.longitude),
+        react_1.default.createElement("p", null,
+            "Dist\u00E2ncia: ",
+            data.distance,
+            " km"),
+        react_1.default.createElement("p", null,
+            "Dura\u00E7\u00E3o: ",
+            data.duration),
+        react_1.default.createElement("h2", null, "Motoristas Dispon\u00EDveis"),
+        react_1.default.createElement("ul", null, data.options.map((option) => (react_1.default.createElement("li", { key: option.id },
+            react_1.default.createElement("strong", null, option.name),
+            " - ",
+            option.vehicle,
+            react_1.default.createElement("br", null),
+            react_1.default.createElement("em", null, option.description),
+            react_1.default.createElement("br", null),
+            "Valor: R$",
+            option.value.toFixed(2),
+            react_1.default.createElement("br", null),
+            react_1.default.createElement("button", { onClick: () => handleChooseDriver(option) }, "Escolher")))))));
 };
 exports.default = RideOptions;

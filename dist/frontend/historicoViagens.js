@@ -62,28 +62,37 @@ const RideHistory = () => {
             alert(((_b = (_a = error.response) === null || _a === void 0 ? void 0 : _a.data) === null || _b === void 0 ? void 0 : _b.error_description) || 'Erro ao buscar o histórico.');
         }
     });
-    return (<div>
-      <h1>Histórico de Viagens</h1>
-      <label>
-        ID do Usuário:
-        <input type="text" value={customerId} onChange={(e) => setCustomerId(e.target.value)} required/>
-      </label>
-      <label>
-        ID do Motorista (opcional):
-        <input type="text" value={driverId} onChange={(e) => setDriverId(e.target.value)}/>
-      </label>
-      <button onClick={handleFetchHistory}>Buscar Histórico</button>
-      <ul>
-        {rides.map((ride) => (<li key={ride.id}>
-            <p>Data: {ride.date}</p>
-            <p>Motorista: {ride.driver.name}</p>
-            <p>Origem: {ride.origin}</p>
-            <p>Destino: {ride.destination}</p>
-            <p>Distância: {ride.distance} km</p>
-            <p>Tempo: {ride.duration}</p>
-            <p>Valor: R$ {ride.value}</p>
-          </li>))}
-      </ul>
-    </div>);
+    return (react_1.default.createElement("div", null,
+        react_1.default.createElement("h1", null, "Hist\u00F3rico de Viagens"),
+        react_1.default.createElement("label", null,
+            "ID do Usu\u00E1rio:",
+            react_1.default.createElement("input", { type: "text", value: customerId, onChange: (e) => setCustomerId(e.target.value), required: true })),
+        react_1.default.createElement("label", null,
+            "ID do Motorista (opcional):",
+            react_1.default.createElement("input", { type: "text", value: driverId, onChange: (e) => setDriverId(e.target.value) })),
+        react_1.default.createElement("button", { onClick: handleFetchHistory }, "Buscar Hist\u00F3rico"),
+        react_1.default.createElement("ul", null, rides.map((ride) => (react_1.default.createElement("li", { key: ride.id },
+            react_1.default.createElement("p", null,
+                "Data: ",
+                ride.date),
+            react_1.default.createElement("p", null,
+                "Motorista: ",
+                ride.driver.name),
+            react_1.default.createElement("p", null,
+                "Origem: ",
+                ride.origin),
+            react_1.default.createElement("p", null,
+                "Destino: ",
+                ride.destination),
+            react_1.default.createElement("p", null,
+                "Dist\u00E2ncia: ",
+                ride.distance,
+                " km"),
+            react_1.default.createElement("p", null,
+                "Tempo: ",
+                ride.duration),
+            react_1.default.createElement("p", null,
+                "Valor: R$ ",
+                ride.value)))))));
 };
 exports.default = RideHistory;

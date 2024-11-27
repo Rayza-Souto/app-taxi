@@ -64,23 +64,18 @@ const RideRequestForm = () => {
             alert(((_b = (_a = error.response) === null || _a === void 0 ? void 0 : _a.data) === null || _b === void 0 ? void 0 : _b.error_description) || 'Erro ao estimar a viagem.');
         }
     });
-    return (<div>
-      <h1>Solicitar Viagem</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          ID do Usuário:
-          <input type="text" value={customerId} onChange={(e) => setCustomerId(e.target.value)} required/>
-        </label>
-        <label>
-          Origem:
-          <input type="text" value={origin} onChange={(e) => setOrigin(e.target.value)} required/>
-        </label>
-        <label>
-          Destino:
-          <input type="text" value={destination} onChange={(e) => setDestination(e.target.value)} required/>
-        </label>
-        <button type="submit">Estimar Viagem</button>
-      </form>
-    </div>);
+    return (react_1.default.createElement("div", null,
+        react_1.default.createElement("h1", null, "Solicitar Viagem"),
+        react_1.default.createElement("form", { onSubmit: handleSubmit },
+            react_1.default.createElement("label", null,
+                "ID do Usu\u00E1rio:",
+                react_1.default.createElement("input", { type: "text", value: customerId, onChange: (e) => setCustomerId(e.target.value), required: true })),
+            react_1.default.createElement("label", null,
+                "Origem:",
+                react_1.default.createElement("input", { type: "text", value: origin, onChange: (e) => setOrigin(e.target.value), required: true })),
+            react_1.default.createElement("label", null,
+                "Destino:",
+                react_1.default.createElement("input", { type: "text", value: destination, onChange: (e) => setDestination(e.target.value), required: true })),
+            react_1.default.createElement("button", { type: "submit" }, "Estimar Viagem"))));
 };
 exports.default = RideRequestForm;
