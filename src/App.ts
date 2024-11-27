@@ -5,16 +5,17 @@ import axios from 'axios';
 import { Request, Response } from 'express';
 import handleChooseDriver from './frontend/opcoesViagem';
 
+
 dotenv.config();
 const app = express();
 const port = 8080;
 
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+})
+
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'index.html')));
-
-app.get("/", (req: Request, res: Response) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
-});
 
 const api = axios.create({
     baseURL: `https://maps.googleapis.com/maps/api/directions/json`
@@ -70,8 +71,4 @@ app.get("/ride/estimate", async (req: Request, res: Response) => {
             res.status(500).json({ message: "Internal server error" });
         }
     }
-
-    app.listen(port, () => {
-        console.log(`Server is running on http://localhost:${port}`);
-    })
 });

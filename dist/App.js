@@ -20,11 +20,11 @@ const opcoesViagem_1 = __importDefault(require("./frontend/opcoesViagem"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = 8080;
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+});
 app.use(express_1.default.json());
 app.use(express_1.default.static(path_1.default.join(__dirname, 'index.html')));
-app.get("/", (req, res) => {
-    res.sendFile(path_1.default.join(__dirname, 'index.html'));
-});
 const api = axios_1.default.create({
     baseURL: `https://maps.googleapis.com/maps/api/directions/json`
 });
@@ -76,7 +76,4 @@ app.get("/ride/estimate", (req, res) => __awaiter(void 0, void 0, void 0, functi
             res.status(500).json({ message: "Internal server error" });
         }
     }
-    app.listen(port, () => {
-        console.log(`Server is running on http://localhost:${port}`);
-    });
 }));
